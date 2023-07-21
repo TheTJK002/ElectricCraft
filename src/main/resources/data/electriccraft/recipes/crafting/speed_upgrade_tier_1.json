@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "E": {
+      "item": "electriccraft:empty_upgrade"
+    }
+  },
+  "pattern": [
+    "GSG",
+    "SES",
+    "GSG"
+  ],
+  "result": {
+    "item": "electriccraft:speed_upgrade_tier_1"
+  }
+}

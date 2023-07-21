@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "E": {
+      "item": "electriccraft:empty_upgrade"
+    }
+  },
+  "pattern": [
+    "DRD",
+    "RER",
+    "DRD"
+  ],
+  "result": {
+    "item": "electriccraft:energy_upgrade_tier_2"
+  }
+}

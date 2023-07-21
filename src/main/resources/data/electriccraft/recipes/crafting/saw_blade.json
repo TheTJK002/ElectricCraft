@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "pattern": [
+    "II ",
+    "ICI",
+    " II"
+  ],
+  "result": {
+    "item": "electriccraft:saw_blade"
+  }
+}

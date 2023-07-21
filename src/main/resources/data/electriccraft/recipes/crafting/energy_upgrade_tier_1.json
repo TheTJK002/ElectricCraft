@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "E": {
+      "item": "electriccraft:empty_upgrade"
+    }
+  },
+  "pattern": [
+    "GRG",
+    "RER",
+    "GRG"
+  ],
+  "result": {
+    "item": "electriccraft:energy_upgrade_tier_1"
+  }
+}

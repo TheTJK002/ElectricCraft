@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north" : {
+      "model": "electriccraft:block/electric_crusher"
+    },
+    "facing=south" : {
+      "model": "electriccraft:block/electric_crusher",
+      "y": 180
+    },
+    "facing=west" : {
+      "model": "electriccraft:block/electric_crusher",
+      "y": 270
+    },
+    "facing=east" : {
+      "model": "electriccraft:block/electric_crusher",
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north" : {
+      "model": "electriccraft:block/electric_sawmill"
+    },
+    "facing=south" : {
+      "model": "electriccraft:block/electric_sawmill",
+      "y": 180
+    },
+    "facing=west" : {
+      "model": "electriccraft:block/electric_sawmill",
+      "y": 270
+    },
+    "facing=east" : {
+      "model": "electriccraft:block/electric_sawmill",
+      "y": 90
+    }
+  }
+}

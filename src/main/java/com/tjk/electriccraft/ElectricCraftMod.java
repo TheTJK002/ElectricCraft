@@ -1,6 +1,9 @@
 package com.tjk.electriccraft;
 
 import com.mojang.logging.LogUtils;
+import com.tjk.electriccraft.block.ModBlock;
+import com.tjk.electriccraft.block.generators.GeneratorsBlock;
+import com.tjk.electriccraft.item.ModItems;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -19,8 +22,10 @@ public class ElectricCraftMod {
 
     public ElectricCraftMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
         modEventBus.addListener(this::commonSetup);
+
+        ModItems.register(modEventBus);
+        ModBlock.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

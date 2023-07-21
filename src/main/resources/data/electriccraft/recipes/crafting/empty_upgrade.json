@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "B": {
+      "item": "minecraft:blackstone"
+    },
+    "F": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "pattern": [
+    " I ",
+    "IBI",
+    "GFG"
+  ],
+  "result": {
+    "item": "electriccraft:empty_upgrade"
+  }
+}

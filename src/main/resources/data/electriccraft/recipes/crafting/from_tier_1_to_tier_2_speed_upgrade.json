@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "E": {
+      "item": "electriccraft:speed_upgrade_tier_1"
+    }
+  },
+  "pattern": [
+    "DSD",
+    "SES",
+    "DSD"
+  ],
+  "result": {
+    "item": "electriccraft:speed_upgrade_tier_2"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "item.electriccraft.stone_hammer" : "Stone Hammer",
+  "item.electriccraft.saw_blade" : "Saw Blade",
+
+  "item.electriccraft.iron_plate" : "Iron Plate",
+  "item.electriccraft.gold_plate" : "Gold Plate",
+  "item.electriccraft.diamond_plate" : "Diamond Plate",
+
+  "item.electriccraft.empty_upgrade" : "Empty Upgrade",
+  "item.electriccraft.speed_upgrade_tier_1" : "Speed Upgrade Tier I",
+  "item.electriccraft.speed_upgrade_tier_2" : "Speed Upgrade Tier II",
+  "item.electriccraft.energy_upgrade_tier_1" : "Energy Upgrade Tier I",
+  "item.electriccraft.energy_upgrade_tier_2" : "Energy Upgrade Tier II",
+
+  "block.electriccraft.coal_generator": "Coal Generator",
+  "block.electriccraft.lava_generator": "Lava Generator",
+  "block.electriccraft.electric_crusher": "Electric Crusher",
+  "block.electriccraft.electric_furnace": "Electric Furnace",
+  "block.electriccraft.electric_sawmill": "Electric Sawmill",
+  "block.electriccraft.electric_press": "Electric Press"
+}
