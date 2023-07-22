@@ -2,6 +2,7 @@ package com.tjk.electriccraft;
 
 import com.mojang.logging.LogUtils;
 import com.tjk.electriccraft.block.ModBlock;
+import com.tjk.electriccraft.block.entity.ModBlockEntity;
 import com.tjk.electriccraft.block.generators.GeneratorsBlock;
 import com.tjk.electriccraft.item.ModItems;
 import net.minecraftforge.api.distmarker.Dist;
@@ -26,6 +27,7 @@ public class ElectricCraftMod {
 
         ModItems.register(modEventBus);
         ModBlock.register(modEventBus);
+        ModBlockEntity.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }

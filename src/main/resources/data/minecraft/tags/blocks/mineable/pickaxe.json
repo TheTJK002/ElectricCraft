@@ -1,4 +1,11 @@
 {
   "replace": false,
-  "values": []
+  "values": [
+    "electriccraft:coal_generator",
+    "electriccraft:lava_generator",
+    "electriccraft:electric_crusher",
+    "electriccraft:electric_furnace",
+    "electriccraft:electric_press",
+    "electriccraft:electric_sawmill"
+  ]
 }
