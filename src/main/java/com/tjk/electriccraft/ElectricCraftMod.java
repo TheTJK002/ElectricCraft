@@ -5,6 +5,7 @@ import com.tjk.electriccraft.block.ModBlock;
 import com.tjk.electriccraft.block.entity.ModBlockEntity;
 import com.tjk.electriccraft.block.generators.GeneratorsBlock;
 import com.tjk.electriccraft.item.ModItems;
+import com.tjk.electriccraft.screen.ECScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -28,6 +29,8 @@ public class ElectricCraftMod {
         ModItems.register(modEventBus);
         ModBlock.register(modEventBus);
         ModBlockEntity.register(modEventBus);
+
+        ECScreens.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
