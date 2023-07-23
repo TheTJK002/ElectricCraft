@@ -1,8 +1,6 @@
 package com.tjk.electriccraft.block;
 
 import com.tjk.electriccraft.ElectricCraftMod;
-import com.tjk.electriccraft.block.custom.*;
-import com.tjk.electriccraft.block.generators.GeneratorsBlock;
 import com.tjk.electriccraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -22,22 +20,35 @@ public class ModBlock {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, ElectricCraftMod.MODID);
 
+    public static final RegistryObject<Block> COAL_GENERATOR = registerBlock("coal_generator",
+            () -> new CoaGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)
+                    .requiresCorrectToolForDrops().sound(SoundType.METAL)
+                    .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+
+    public static final RegistryObject<Block> LAVA_GENERATOR = registerBlock("lava_generator",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .requiresCorrectToolForDrops().sound(SoundType.METAL)
+                    .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+
     public static final RegistryObject<Block> ELECTRIC_CRUSHER = registerBlock("electric_crusher",
-            () -> new ElectricCrusherBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
-                    .strength(0.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+                    .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+
     public static final RegistryObject<Block> ELECTRIC_FURNACE = registerBlock("electric_furnace",
-            () -> new ElectricFurnaceBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
-                    .strength(0.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+                    .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+
     public static final RegistryObject<Block> ELECTRIC_SAWMILL = registerBlock("electric_sawmill",
-            () -> new ElectricSawmillBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
-                    .strength(0.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+                    .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+
     public static final RegistryObject<Block> ELECTRIC_PRESS = registerBlock("electric_press",
-            () -> new ElectricPressBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
-                    .strength(0.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+                    .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
@@ -52,6 +63,5 @@ public class ModBlock {
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
-        GeneratorsBlock.register(eventBus);
     }
 }

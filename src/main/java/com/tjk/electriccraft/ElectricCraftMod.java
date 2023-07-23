@@ -2,10 +2,12 @@ package com.tjk.electriccraft;
 
 import com.mojang.logging.LogUtils;
 import com.tjk.electriccraft.block.ModBlock;
-import com.tjk.electriccraft.block.entity.ModBlockEntity;
-import com.tjk.electriccraft.block.generators.GeneratorsBlock;
+import com.tjk.electriccraft.block.entity.ModBlockEntities;
 import com.tjk.electriccraft.item.ModItems;
-import com.tjk.electriccraft.screen.ECScreens;
+import com.tjk.electriccraft.network.ECNetworkMessages;
+import com.tjk.electriccraft.screen.CoalGeneratorScreen;
+import com.tjk.electriccraft.screen.ModMenuTypes;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -28,14 +30,14 @@ public class ElectricCraftMod {
 
         ModItems.register(modEventBus);
         ModBlock.register(modEventBus);
-        ModBlockEntity.register(modEventBus);
-
-        ECScreens.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        ECNetworkMessages.register();
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -48,6 +50,7 @@ public class ElectricCraftMod {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            MenuScreens.register(ModMenuTypes.COAL_GENERATOR_MENU.get(), CoalGeneratorScreen::new);
         }
     }
 }
