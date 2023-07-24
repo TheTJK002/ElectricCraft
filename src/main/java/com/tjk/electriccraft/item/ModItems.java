@@ -32,6 +32,8 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     public static final RegistryObject<Item> DIAMOND_PLATE = ITEMS.register("diamond_plate",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> SIMPLE_SOLAR_PANEL = ITEMS.register("simple_solar_panel",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

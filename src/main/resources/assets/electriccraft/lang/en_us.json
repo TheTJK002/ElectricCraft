@@ -1,6 +1,7 @@
 {
   "item.electriccraft.stone_hammer" : "Stone Hammer",
   "item.electriccraft.saw_blade" : "Saw Blade",
+  "item.electriccraft.simple_solar_panel" : "Simple Solar Panel",
 
   "item.electriccraft.iron_plate" : "Iron Plate",
   "item.electriccraft.gold_plate" : "Gold Plate",
@@ -14,6 +15,14 @@
 
   "block.electriccraft.coal_generator": "Coal Generator",
   "block.electriccraft.lava_generator": "Lava Generator",
+
+  "block.electriccraft.simple_solar_panel_generator": "Simple Solar Panel Generator",
+  "block.electriccraft.basic_solar_panel_generator": "Basic Solar Panel Generator",
+  "block.electriccraft.advanced_solar_panel_generator": "Advanced Solar Panel Generator",
+  "block.electriccraft.elite_solar_panel_generator": "Elite Solar Panel Generator",
+  "block.electriccraft.ultimate_solar_panel_generator": "Ultimate Solar Panel Generator",
+  "block.electriccraft.creative_solar_panel_generator": "Creative Solar Panel Generator",
+
   "block.electriccraft.electric_crusher": "Electric Crusher",
   "block.electriccraft.electric_furnace": "Electric Furnace",
   "block.electriccraft.electric_sawmill": "Electric Sawmill",

@@ -6,21 +6,20 @@ import net.minecraft.network.chat.Component;
 import net.minecraftforge.energy.IEnergyStorage;
 
 
-import java.awt.*;
 import java.util.List;
 
-public class EnergyInfoArea extends InfoArea {
+public class EnergyInfoAreaCoalGeneratorBlock extends InfoArea {
     private final IEnergyStorage energy;
 
-    public EnergyInfoArea(int xMin, int yMin)  {
+    public EnergyInfoAreaCoalGeneratorBlock(int xMin, int yMin)  {
         this(xMin, yMin, null,8,64);
     }
 
-    public EnergyInfoArea(int xMin, int yMin, IEnergyStorage energy)  {
-        this(xMin, yMin, energy,5,55);
+    public EnergyInfoAreaCoalGeneratorBlock(int xMin, int yMin, IEnergyStorage energy)  {
+        this(xMin, yMin, energy,19,45);
     }
 
-    public EnergyInfoArea(int xMin, int yMin, IEnergyStorage energy, int width, int height)  {
+    public EnergyInfoAreaCoalGeneratorBlock(int xMin, int yMin, IEnergyStorage energy, int width, int height)  {
         super(new Rect2i(xMin, yMin, width, height));
         this.energy = energy;
     }

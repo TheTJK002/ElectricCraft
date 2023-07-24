@@ -23,7 +23,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -79,7 +78,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
 
             @Override
             public int getCount() {
-                return 0;
+                return 2;
             }
         };
     }
@@ -88,15 +87,32 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
         if (level.isClientSide()) {
             return;
         }
-        if(hasCoal(entity)) {
-            entity.progress++;
-        if(entity.progress >= entity.maxProgress) {
-            createEnergy(entity);
-        }
-        } else {
-            entity.resetProgress();
+            if(entity.isEnergyFull(entity)) {
+                //Nope
+            }
+            else {
+                if(hasCoal(entity)) {
+                entity.progress++;
+                if(entity.progress <= entity.maxProgress) {
+                    createEnergy(entity);
+                    if(entity.progress >= entity.maxProgress) {
+                        removeFuel(entity);
+                    }
+                }else {
+                    entity.resetProgress();
+                }
+            }
         }
         setChanged(level, pos, state);
+    }
+
+    public boolean isEnergyFull(CoalGeneratorBlockEntity entity) {
+        return entity.energyHandler.getEnergyStored() == entity.energyHandler.getMaxEnergyStored();
+    }
+
+    private static void removeFuel(CoalGeneratorBlockEntity entity) {
+        entity.itemHandler.extractItem(0,1, false);
+        entity.resetProgress();
     }
 
     private static boolean hasCoal(CoalGeneratorBlockEntity entity) {
@@ -104,9 +120,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private static void createEnergy(CoalGeneratorBlockEntity entity){
-        entity.itemHandler.extractItem(0, 1, false);
-        entity.resetProgress();
-        entity.energyHandler.receiveEnergy(350, false);
+        entity.energyHandler.receiveEnergy(40, false);
     }
 
 

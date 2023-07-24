@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north" : {
+      "model": "electriccraft:block/elite_solar_panel_generator"
+    },
+    "facing=south" : {
+      "model": "electriccraft:block/elite_solar_panel_generator",
+      "y": 180
+    },
+    "facing=west" : {
+      "model": "electriccraft:block/elite_solar_panel_generator",
+      "y": 270
+    },
+    "facing=east" : {
+      "model": "electriccraft:block/elite_solar_panel_generator",
+      "y": 90
+    }
+  }
+}

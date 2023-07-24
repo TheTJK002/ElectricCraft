@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "electriccraft:simple_solar_panel"
+    },
+    "W": {
+      "item": "minecraft:oak_planks"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "WRW",
+    "WWW"
+  ],
+  "result": {
+    "item": "electriccraft:simple_solar_panel_generator"
+  }
+}

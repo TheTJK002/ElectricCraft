@@ -1,29 +1,21 @@
 package com.tjk.electriccraft.block;
 
 import com.tjk.electriccraft.block.entity.CoalGeneratorBlockEntity;
-import com.tjk.electriccraft.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import static net.minecraft.world.level.block.HopperBlock.FACING;
-
-public class CoaGeneratorBlock extends BaseEntityBlock {
-    protected CoaGeneratorBlock(Properties properties) {
+public class SimpleSolarPanelGeneratorBlock extends HorizontalDirectionalBlock {
+    protected SimpleSolarPanelGeneratorBlock(Properties properties) {
         super(properties);
     }
 
@@ -31,6 +23,14 @@ public class CoaGeneratorBlock extends BaseEntityBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
+
+    public static final VoxelShape SHAPE =
+            Block.box(0,0,0,16,4,16);
+
+    @Override
+    public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
+        return SHAPE;
     }
 
     @Override
@@ -64,33 +64,6 @@ public class CoaGeneratorBlock extends BaseEntityBlock {
                 sigEntity.drops();
             }
         }
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-    }
-
-    @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if(!pLevel.isClientSide()) {
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof CoalGeneratorBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (CoalGeneratorBlockEntity) entity, pPos);
-            } else {
-                throw new IllegalStateException("Missing Container");
-            }
-        }
-
-        return InteractionResult.sidedSuccess(pLevel.isClientSide());
-    };
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new CoalGeneratorBlockEntity(pos, state);
-    }
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pType) {
-        return createTickerHelper(pType, ModBlockEntities.COAL_GENERATOR.get(),
-                CoalGeneratorBlockEntity::tick);
+        super.onRemove(pState, pLevel, pPos, pState, pIsMoving);
     }
 }

@@ -3,7 +3,7 @@ package com.tjk.electriccraft.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.tjk.electriccraft.ElectricCraftMod;
-import com.tjk.electriccraft.screen.render.EnergyInfoArea;
+import com.tjk.electriccraft.screen.render.EnergyInfoAreaCoalGeneratorBlock;
 import com.tjk.electriccraft.utils.MouseUtil;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -17,7 +17,7 @@ public class CoalGeneratorScreen extends AbstractContainerScreen<CoalGeneratorMe
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(ElectricCraftMod.MODID, "textures/gui/coal_generator_gui.png");
 
-    private EnergyInfoArea energyInfoArea;
+    private EnergyInfoAreaCoalGeneratorBlock energyInfoArea;
     public CoalGeneratorScreen(CoalGeneratorMenu menu, Inventory inv, Component component) {
         super(menu, inv, component);
     }
@@ -49,19 +49,19 @@ public class CoalGeneratorScreen extends AbstractContainerScreen<CoalGeneratorMe
 
         this.blit(stack, x, y, 0, 0, imageWidth, imageHeight);
         if(menu.isCoalGenerator())
-            blit(stack, x + 81, y + 45, 197, 0,menu.getScaleProgress(), 14);
+            blit(stack, x + 81, y + 45, 197, 0,14, menu.getScaleProgress());
             energyInfoArea.draw(stack);
     }
 
     private void renderEnergyAreaTooltips(PoseStack pPoseStack, int pMouseX, int pMouseY, int x, int y) {
-        if (isMouseAboveArea(pMouseX, pMouseY, x, y, 10, 17, 19, 46))
+        if (isMouseAboveArea(pMouseX, pMouseY, x, y, 10, 17, 19, 45))
             renderTooltip(pPoseStack, energyInfoArea.getTooltips(), Optional.empty(), pMouseX - x, pMouseY - y);
     }
 
     private void assignEnergyInfoArea() {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        energyInfoArea = new EnergyInfoArea(x + 10, y + 17, menu.blockEntity.getEnergyStorage());
+        energyInfoArea = new EnergyInfoAreaCoalGeneratorBlock(x + 10, y + 17, menu.blockEntity.getEnergyStorage());
     }
 
     @Override

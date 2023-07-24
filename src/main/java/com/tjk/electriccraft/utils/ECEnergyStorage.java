@@ -18,7 +18,7 @@ public abstract class ECEnergyStorage extends EnergyStorage {
 
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
-        int inputEnergy = super.extractEnergy(maxExtract, simulate);
+        int inputEnergy = super.receiveEnergy(maxReceive, simulate);
         if(inputEnergy != 0) {
             onEnergyChanged();
         }

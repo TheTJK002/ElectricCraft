@@ -19,7 +19,7 @@ public class CoalGeneratorMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public CoalGeneratorMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-        this(id, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(1));
+        this(id, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
     public CoalGeneratorMenu(int id, Inventory inv, BlockEntity entity, ContainerData data) {
@@ -40,7 +40,7 @@ public class CoalGeneratorMenu extends AbstractContainerMenu {
         addDataSlots(data);
     }
 
-    public boolean isCoalGenerator() {return data.get(0) > 0;}
+    public boolean isCoalGenerator() { return data.get(0) > 0; }
 
     public int getScaleProgress() {
         int progress = this.data.get(0);
@@ -109,5 +109,5 @@ public class CoalGeneratorMenu extends AbstractContainerMenu {
         }
     }
 
-    public CoalGeneratorBlockEntity getBlockEntity() {return blockEntity;}
+    public CoalGeneratorBlockEntity getBlockEntity() { return blockEntity; }
 }
