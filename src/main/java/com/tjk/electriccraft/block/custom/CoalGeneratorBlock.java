@@ -1,4 +1,4 @@
-package com.tjk.electriccraft.block;
+package com.tjk.electriccraft.block.custom;
 
 import com.tjk.electriccraft.block.entity.CoalGeneratorBlockEntity;
 import com.tjk.electriccraft.block.entity.ModBlockEntities;
@@ -16,14 +16,16 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
-import static net.minecraft.world.level.block.HopperBlock.FACING;
+public class CoalGeneratorBlock extends BaseEntityBlock {
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-public class CoaGeneratorBlock extends BaseEntityBlock {
-    protected CoaGeneratorBlock(Properties properties) {
+    public CoalGeneratorBlock(Properties properties) {
         super(properties);
     }
 
@@ -54,13 +56,10 @@ public class CoaGeneratorBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving)
-    {
-        if (pState.getBlock() != pNewState.getBlock())
-        {
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (pState.getBlock() != pNewState.getBlock()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof CoalGeneratorBlockEntity sigEntity)
-            {
+            if (blockEntity instanceof CoalGeneratorBlockEntity sigEntity) {
                 sigEntity.drops();
             }
         }
@@ -69,17 +68,17 @@ public class CoaGeneratorBlock extends BaseEntityBlock {
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if(!pLevel.isClientSide()) {
+        if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof CoalGeneratorBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (CoalGeneratorBlockEntity) entity, pPos);
+            if (entity instanceof CoalGeneratorBlockEntity) {
+                NetworkHooks.openScreen(((ServerPlayer) pPlayer), (CoalGeneratorBlockEntity) entity, pPos);
             } else {
                 throw new IllegalStateException("Missing Container");
             }
         }
 
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
-    };
+    }
 
     @Nullable
     @Override

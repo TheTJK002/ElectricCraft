@@ -7,6 +7,7 @@ import com.tjk.electriccraft.item.ModItems;
 import com.tjk.electriccraft.network.ECNetworkMessages;
 import com.tjk.electriccraft.screen.CoalGeneratorScreen;
 import com.tjk.electriccraft.screen.ModMenuTypes;
+import com.tjk.electriccraft.screen.SimpleSolarPanelGeneratorScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -51,6 +52,7 @@ public class ElectricCraftMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             MenuScreens.register(ModMenuTypes.COAL_GENERATOR_MENU.get(), CoalGeneratorScreen::new);
+            MenuScreens.register(ModMenuTypes.SIMPLE_SOLAR_PANEL_GENERATOR_MENU.get(), SimpleSolarPanelGeneratorScreen::new);
         }
     }
 }

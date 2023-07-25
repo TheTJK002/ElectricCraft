@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north" : {
+      "model": "electriccraft:block/mob_drop_generator"
+    },
+    "facing=south" : {
+      "model": "electriccraft:block/mob_drop_generator",
+      "y": 180
+    },
+    "facing=west" : {
+      "model": "electriccraft:block/mob_drop_generator",
+      "y": 270
+    },
+    "facing=east" : {
+      "model": "electriccraft:block/mob_drop_generator",
+      "y": 90
+    }
+  }
+}

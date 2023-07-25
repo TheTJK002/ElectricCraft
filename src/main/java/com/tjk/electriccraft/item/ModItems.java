@@ -45,6 +45,12 @@ public class ModItems {
     public static final RegistryObject<Item> STEEL_AXE = ITEMS.register("steel_axe",
             () -> new AxeItem(ModTiers.STEEL, 7, -3.1f,
                     new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> STEEL_SHOVEL = ITEMS.register("steel_shovel",
+            () -> new ShovelItem(ModTiers.STEEL, 2.5f, -3.1f,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> STEEL_HOE = ITEMS.register("steel_hoe",
+            () -> new HoeItem(ModTiers.STEEL, -1, -3.0f,
+                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

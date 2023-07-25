@@ -1,6 +1,8 @@
 package com.tjk.electriccraft.block;
 
 import com.tjk.electriccraft.ElectricCraftMod;
+import com.tjk.electriccraft.block.custom.CoalGeneratorBlock;
+import com.tjk.electriccraft.block.custom.SimpleSolarPanelGeneratorBlock;
 import com.tjk.electriccraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -21,11 +23,19 @@ public class ModBlock {
             DeferredRegister.create(ForgeRegistries.BLOCKS, ElectricCraftMod.MODID);
 
     public static final RegistryObject<Block> COAL_GENERATOR = registerBlock("coal_generator",
-            () -> new CoaGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
                     .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     public static final RegistryObject<Block> LAVA_GENERATOR = registerBlock("lava_generator",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .requiresCorrectToolForDrops().sound(SoundType.METAL)
+                    .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> CULINARY_GENERATOR = registerBlock("culinary_generator",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .requiresCorrectToolForDrops().sound(SoundType.METAL)
+                    .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> MOB_DROP_GENERATOR = registerBlock("mob_drop_generator",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
                     .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
