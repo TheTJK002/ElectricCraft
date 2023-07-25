@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "key": {
-    "C": {
-      "item": "minecraft:cobblestone"
-    },
     "S": {
+      "item": "electriccraft:steel_ingot"
+    },
+    "R": {
       "item": "minecraft:stick"
     }
   },
   "pattern": [
-    " C ",
-    "CS ",
-    "  S"
+    "SSS",
+    " R ",
+    " R "
   ],
   "result": {
-    "item": "electriccraft:stone_hammer"
+    "item": "electriccraft:steel_pickaxe"
   }
 }

@@ -3,6 +3,7 @@
   "item.electriccraft.saw_blade" : "Saw Blade",
   "item.electriccraft.simple_solar_panel" : "Simple Solar Panel",
 
+  "item.electriccraft.copper_plate" : "Copper Plate",
   "item.electriccraft.iron_plate" : "Iron Plate",
   "item.electriccraft.gold_plate" : "Gold Plate",
   "item.electriccraft.diamond_plate" : "Diamond Plate",
@@ -13,8 +14,24 @@
   "item.electriccraft.energy_upgrade_tier_1" : "Energy Upgrade Tier I",
   "item.electriccraft.energy_upgrade_tier_2" : "Energy Upgrade Tier II",
 
+  "item.electriccraft.basic_circuit" : "Basic Circuit",
+  "item.electriccraft.advanced_circuit" : "Advanced Circuit",
+  "item.electriccraft.elite_circuit" : "Elite Circuit",
+  "item.electriccraft.ultimate_circuit" : "Ultimate Circuit",
+
+  "item.electriccraft.steel_ingot" : "Steel Ingot",
+  "block.electriccraft.steel_block" : "Block of Steel",
+
+  "item.electriccraft.steel_pickaxe" : "Steel Pickaxe",
+  "item.electriccraft.steel_shovel" : "Steel Shovel",
+  "item.electriccraft.steel_sword" : "Steel Sword",
+  "item.electriccraft.steel_axe" : "Steel Axe",
+  "item.electriccraft.steel_hoe" : "Steel Hoe",
+
   "block.electriccraft.coal_generator": "Coal Generator",
   "block.electriccraft.lava_generator": "Lava Generator",
+  "block.electriccraft.culinary_generator": "Culinary Generator",
+  "block.electriccraft.mob_drop_generator": "Mob Drop Generator",
 
   "block.electriccraft.simple_solar_panel_generator": "Simple Solar Panel Generator",
   "block.electriccraft.basic_solar_panel_generator": "Basic Solar Panel Generator",
