@@ -1,0 +1,12 @@
+{
+  "type": "electriccraft:coal_generator",
+  "ingredients": [
+    {
+      "item": [
+        "minecraft:coal",
+        "minecraft:charcoal"
+      ]
+    }
+  ],
+  "output": 80
+}

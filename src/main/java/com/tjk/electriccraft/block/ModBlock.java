@@ -2,7 +2,6 @@ package com.tjk.electriccraft.block;
 
 import com.tjk.electriccraft.ElectricCraftMod;
 import com.tjk.electriccraft.block.custom.CoalGeneratorBlock;
-import com.tjk.electriccraft.block.custom.SimpleSolarPanelGeneratorBlock;
 import com.tjk.electriccraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -60,33 +59,39 @@ public class ModBlock {
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
                     .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> SIMPLE_SOLAR_PANEL_GENERATOR = registerBlock("simple_solar_panel_generator",
-            () -> new SimpleSolarPanelGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
                     .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> BASIC_SOLAR_PANEL_GENERATOR = registerBlock("basic_solar_panel_generator",
-            () -> new SimpleSolarPanelGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
                     .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> ADVANCED_SOLAR_PANEL_GENERATOR = registerBlock("advanced_solar_panel_generator",
-            () -> new SimpleSolarPanelGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
                     .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> ELITE_SOLAR_PANEL_GENERATOR = registerBlock("elite_solar_panel_generator",
-            () -> new SimpleSolarPanelGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
                     .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> ULTIMATE_SOLAR_PANEL_GENERATOR = registerBlock("ultimate_solar_panel_generator",
-            () -> new SimpleSolarPanelGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
                     .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> CREATIVE_SOLAR_PANEL_GENERATOR = registerBlock("creative_solar_panel_generator",
-            () -> new SimpleSolarPanelGeneratorBlock(BlockBehaviour.Properties.of(Material.STONE)
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
                     .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
     public static final RegistryObject<Block> STEEL_BLOCK = registerBlock("steel_block",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
                     .requiresCorrectToolForDrops().sound(SoundType.METAL)
                     .strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> SILICON_ORE = registerBlock("silicon_ore",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .requiresCorrectToolForDrops().strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
+    public static final RegistryObject<Block> DEEPSLATE_SILICON_ORE = registerBlock("deepslate_silicon_ore",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .requiresCorrectToolForDrops().strength(1.5f)), CreativeModeTab.TAB_BUILDING_BLOCKS);
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

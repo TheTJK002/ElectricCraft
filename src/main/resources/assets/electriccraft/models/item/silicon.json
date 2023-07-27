@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "electriccraft:item/steel_shovel"
+    "layer0": "electriccraft:item/silicon"
   }
 }

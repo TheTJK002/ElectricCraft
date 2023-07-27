@@ -5,9 +5,11 @@ import com.tjk.electriccraft.block.ModBlock;
 import com.tjk.electriccraft.block.entity.ModBlockEntities;
 import com.tjk.electriccraft.item.ModItems;
 import com.tjk.electriccraft.network.ECNetworkMessages;
+import com.tjk.electriccraft.recipe.ModRecipes;
 import com.tjk.electriccraft.screen.CoalGeneratorScreen;
 import com.tjk.electriccraft.screen.ModMenuTypes;
-import com.tjk.electriccraft.screen.SimpleSolarPanelGeneratorScreen;
+import com.tjk.electriccraft.world.feature.ModConfiguredFeatures;
+import com.tjk.electriccraft.world.feature.ModPlacedFeatures;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -32,6 +34,11 @@ public class ElectricCraftMod {
         ModBlock.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModMenuTypes.register(modEventBus);
+        ModRecipes.register(modEventBus);
+
+        //World Gen
+        ModConfiguredFeatures.register(modEventBus);
+        ModPlacedFeatures.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
@@ -52,7 +59,6 @@ public class ElectricCraftMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             MenuScreens.register(ModMenuTypes.COAL_GENERATOR_MENU.get(), CoalGeneratorScreen::new);
-            MenuScreens.register(ModMenuTypes.SIMPLE_SOLAR_PANEL_GENERATOR_MENU.get(), SimpleSolarPanelGeneratorScreen::new);
         }
     }
 }

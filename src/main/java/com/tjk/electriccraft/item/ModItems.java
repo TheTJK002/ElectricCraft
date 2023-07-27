@@ -36,21 +36,17 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
     public static final RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot",
             () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
-    public static final RegistryObject<Item> STEEL_PICKAXE = ITEMS.register("steel_pickaxe",
-            () -> new PickaxeItem(ModTiers.STEEL, 2, -2.8f,
-                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
-    public static final RegistryObject<Item> STEEL_SWORD = ITEMS.register("steel_sword",
-            () -> new SwordItem(ModTiers.STEEL, 4, -2.4f,
-                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
-    public static final RegistryObject<Item> STEEL_AXE = ITEMS.register("steel_axe",
-            () -> new AxeItem(ModTiers.STEEL, 7, -3.1f,
-                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
-    public static final RegistryObject<Item> STEEL_SHOVEL = ITEMS.register("steel_shovel",
-            () -> new ShovelItem(ModTiers.STEEL, 2.5f, -3.1f,
-                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
-    public static final RegistryObject<Item> STEEL_HOE = ITEMS.register("steel_hoe",
-            () -> new HoeItem(ModTiers.STEEL, -1, -3.0f,
-                    new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> SILICON = ITEMS.register("silicon",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> BASIC_CIRCUIT = ITEMS.register("basic_circuit",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> ADVANCED_CIRCUIT = ITEMS.register("advanced_circuit",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> ELITE_CIRCUIT = ITEMS.register("elite_circuit",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+    public static final RegistryObject<Item> ULTIMATE_CIRCUIT = ITEMS.register("ultimate_circuit",
+            () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

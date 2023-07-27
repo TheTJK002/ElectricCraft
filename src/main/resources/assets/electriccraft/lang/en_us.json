@@ -19,14 +19,12 @@
   "item.electriccraft.elite_circuit" : "Elite Circuit",
   "item.electriccraft.ultimate_circuit" : "Ultimate Circuit",
 
+  "item.electriccraft.silicon" : "Silicon",
+  "block.electriccraft.silicon_ore" : "Silicon Ore",
+  "block.electriccraft.deepslate_silicon_ore" : "Deepslate Silicon Ore",
+
   "item.electriccraft.steel_ingot" : "Steel Ingot",
   "block.electriccraft.steel_block" : "Block of Steel",
-
-  "item.electriccraft.steel_pickaxe" : "Steel Pickaxe",
-  "item.electriccraft.steel_shovel" : "Steel Shovel",
-  "item.electriccraft.steel_sword" : "Steel Sword",
-  "item.electriccraft.steel_axe" : "Steel Axe",
-  "item.electriccraft.steel_hoe" : "Steel Hoe",
 
   "block.electriccraft.coal_generator": "Coal Generator",
   "block.electriccraft.lava_generator": "Lava Generator",
@@ -39,6 +37,11 @@
   "block.electriccraft.elite_solar_panel_generator": "Elite Solar Panel Generator",
   "block.electriccraft.ultimate_solar_panel_generator": "Ultimate Solar Panel Generator",
   "block.electriccraft.creative_solar_panel_generator": "Creative Solar Panel Generator",
+
+  "item.electriccraft.basic_circuit" : "Basic Circuit",
+  "item.electriccraft.advanced_circuit" : "Advanced Circuit",
+  "item.electriccraft.elite_circuit" : "Elite Circuit",
+  "item.electriccraft.ultimate_circuit" : "Ultimate Circuit",
 
   "block.electriccraft.electric_crusher": "Electric Crusher",
   "block.electriccraft.electric_furnace": "Electric Furnace",

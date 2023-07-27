@@ -2,12 +2,14 @@ package com.tjk.electriccraft.block.entity;
 
 import com.tjk.electriccraft.network.ECNetworkMessages;
 import com.tjk.electriccraft.network.EnergySync;
+import com.tjk.electriccraft.recipe.CoalGeneratorRecipe;
 import com.tjk.electriccraft.screen.CoalGeneratorMenu;
 import com.tjk.electriccraft.utils.ECEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -29,6 +31,8 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvider {
 
     protected final ContainerData data;
@@ -38,14 +42,6 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
             setChanged();
         }
 
-        @Override
-        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return switch (slot) {
-                case 0 -> stack.getItem() == Items.COAL;
-                case 1 -> false;
-                default -> super.isItemValid(slot, stack);
-            };
-        }
     };
 
     private final ECEnergyStorage energyHandler = new ECEnergyStorage(100000) {
@@ -97,10 +93,8 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
         if (level.isClientSide()) {
             return;
         }
-        if (entity.isEnergyFull(entity)) {
-            //Nope
-        } else {
-            if (hasCoal(entity)) {
+        if (!entity.isEnergyFull(entity)) {
+            if (hasInput(entity)) {
                 entity.progress++;
                 if (entity.progress <= entity.maxProgress) {
                     createEnergy(entity);
@@ -120,12 +114,14 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
         entity.resetProgress();
     }
 
-    private static boolean hasCoal(CoalGeneratorBlockEntity entity) {
+    private static boolean hasInput(CoalGeneratorBlockEntity entity) {
+        Level level = entity.level;
+        SimpleContainer inventory = new SimpleContainer();
         return entity.itemHandler.getStackInSlot(0).getItem() == Items.COAL;
     }
 
     private static void createEnergy(CoalGeneratorBlockEntity entity) {
-        entity.energyHandler.receiveEnergy(40, false);
+        entity.energyHandler.receiveEnergy(80, false);
     }
 
     public boolean isEnergyFull(CoalGeneratorBlockEntity entity) {

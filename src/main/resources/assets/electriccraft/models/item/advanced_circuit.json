@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "electriccraft:item/steel_sword"
+    "layer0": "electriccraft:item/advanced_circuit"
   }
 }
