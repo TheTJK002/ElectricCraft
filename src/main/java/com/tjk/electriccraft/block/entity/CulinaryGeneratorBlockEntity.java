@@ -2,14 +2,12 @@ package com.tjk.electriccraft.block.entity;
 
 import com.tjk.electriccraft.network.ECNetworkMessages;
 import com.tjk.electriccraft.network.EnergySync;
-import com.tjk.electriccraft.recipe.CoalGeneratorRecipe;
-import com.tjk.electriccraft.screen.CoalGeneratorMenu;
+import com.tjk.electriccraft.screen.CulinaryGeneratorMenu;
 import com.tjk.electriccraft.utils.ECEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -17,10 +15,10 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -31,18 +29,13 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-import java.util.Optional;
-
-public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvider {
-
+public class CulinaryGeneratorBlockEntity extends BlockEntity implements MenuProvider {
     protected final ContainerData data;
     private final ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
         }
-
     };
 
     private final ECEnergyStorage energyHandler = new ECEnergyStorage(100000) {
@@ -51,26 +44,20 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
             setChanged();
             ECNetworkMessages.sendToClients(new EnergySync(this.energy, getBlockPos()));
         }
-
-        @Override
-        public boolean canExtract() {
-            return true;
-        }
     };
 
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-    private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
-    private int progress = 0;
-    private int maxProgress = 100;
-
-    public CoalGeneratorBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.COAL_GENERATOR.get(), pos, state);
+    LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
+    int progress = 0;
+    int maxProgress = 100;
+    public CulinaryGeneratorBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.CULINARY_GENERATOR.get(), pos, state);
         this.data = new ContainerData() {
             @Override
             public int get(int index) {
                 return switch (index) {
-                    case 0 -> CoalGeneratorBlockEntity.this.progress;
-                    case 1 -> CoalGeneratorBlockEntity.this.maxProgress;
+                    case 0 -> CulinaryGeneratorBlockEntity.this.progress;
+                    case 1 -> CulinaryGeneratorBlockEntity.this.maxProgress;
                     default -> 0;
                 };
             }
@@ -78,8 +65,8 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
             @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0 -> CoalGeneratorBlockEntity.this.progress = value;
-                    case 1 -> CoalGeneratorBlockEntity.this.maxProgress = value;
+                    case 0 -> CulinaryGeneratorBlockEntity.this.progress = value;
+                    case 1 -> CulinaryGeneratorBlockEntity.this.maxProgress = value;
                 }
             }
 
@@ -90,48 +77,50 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
         };
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, CoalGeneratorBlockEntity entity) {
-        if (level.isClientSide()) {
+    public static void tick(Level level, BlockPos pos, BlockState state, CulinaryGeneratorBlockEntity entity) {
+        if(level.isClientSide()) {
             return;
         }
-        if (!entity.isEnergyFull(entity)) {
-            if (hasInput(entity)) {
+
+        if(!entity.isFullEnergy(entity)) {
+            if(hasInput(entity)) {
                 entity.progress++;
-                if (entity.progress <= entity.maxProgress) {
+                if(entity.progress <= entity.maxProgress) {
                     createEnergy(entity);
                     if (entity.progress >= entity.maxProgress) {
-                        removeFuel(entity);
+                        removeInput(entity);
                     }
                 } else {
                     entity.resetProgress();
                 }
             }
         }
-        setChanged(level, pos, state);
     }
 
-    private static void removeFuel(CoalGeneratorBlockEntity entity) {
-        entity.itemHandler.extractItem(0, 1, false);
-        entity.resetProgress();
-    }
-
-    private static boolean hasInput(CoalGeneratorBlockEntity entity) {
-        List<CoalGeneratorRecipe> recipes = entity.getLevel().getRecipeManager().getAllRecipesFor(CoalGeneratorRecipe.Type.INSTANCE);
-        ItemStack inputStack = entity.itemHandler.getStackInSlot(0);
-        return recipes.stream().anyMatch(recipe -> recipe.input.test(inputStack));
-    }
-
-    private static void createEnergy(CoalGeneratorBlockEntity entity) {
-        entity.energyHandler.receiveEnergy( 40, false);
-    }
-
-    public boolean isEnergyFull(CoalGeneratorBlockEntity entity) {
+    private boolean isFullEnergy(CulinaryGeneratorBlockEntity entity) {
         return entity.energyHandler.getEnergyStored() == entity.energyHandler.getMaxEnergyStored();
+    }
+
+    private void resetProgress() {
+        this.progress = 0;
+    }
+
+    private static void createEnergy(CulinaryGeneratorBlockEntity entity) {
+        entity.energyHandler.receiveEnergy(20, false);
+    }
+
+    private static boolean hasInput(CulinaryGeneratorBlockEntity entity) {
+        return entity.itemHandler.getStackInSlot(0).getItem() == Items.CARROT;
+    }
+
+    private static void removeInput(CulinaryGeneratorBlockEntity entity) {
+        entity.itemHandler.extractItem(0,1,false);
+        entity.resetProgress();
     }
 
     @Override
     public Component getDisplayName() {
-        return Component.literal("Coal Generator");
+        return Component.literal("Culinary Generator");
     }
 
     public IEnergyStorage getEnergyStorage() {
@@ -144,9 +133,8 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
-        ECNetworkMessages.sendToClients(new EnergySync(this.energyHandler.getEnergyStored(), getBlockPos()));
-        return new CoalGeneratorMenu(id, inv, this, this.data);
+    public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+        return new CulinaryGeneratorMenu(id, inventory, this, this.data);
     }
 
     @Override
@@ -170,15 +158,16 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
-        lazyItemHandler.invalidate();
         lazyEnergyHandler.invalidate();
+        lazyItemHandler.invalidate();
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
+    protected void saveAdditional(CompoundTag nbt)
+    {
         nbt.put("inventory", itemHandler.serializeNBT());
-        nbt.putInt("coal_generator.progress", progress);
-        nbt.putInt("coal_generator.energy", energyHandler.getEnergyStored());
+        nbt.putInt("culinary_generator.progress", progress);
+        nbt.putInt("culinary_generator.energy", energyHandler.getEnergyStored());
         super.saveAdditional(nbt);
     }
 
@@ -186,19 +175,16 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
     public void load(CompoundTag nbt) {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
-        progress = nbt.getInt("coal_generator.progress");
-        energyHandler.setEnergy(nbt.getInt("coal_generator.energy"));
+        progress = nbt.getInt("culinary_generator.progress");
+        energyHandler.setEnergy(nbt.getInt("culinary_generator_energy"));
     }
 
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++)
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
-        assert this.level != null;
-        Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
-
-    private void resetProgress() {
-        this.progress = 0;
+            assert this.level != null;
+            Containers.dropContents(this.level, this.worldPosition, inventory);
+        }
     }
 }

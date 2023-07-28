@@ -7,6 +7,8 @@ import com.tjk.electriccraft.item.ModItems;
 import com.tjk.electriccraft.network.ECNetworkMessages;
 import com.tjk.electriccraft.recipe.ModRecipes;
 import com.tjk.electriccraft.screen.CoalGeneratorScreen;
+import com.tjk.electriccraft.screen.CulinaryGeneratorMenu;
+import com.tjk.electriccraft.screen.CulinaryGeneratorScreen;
 import com.tjk.electriccraft.screen.ModMenuTypes;
 import com.tjk.electriccraft.world.feature.ModConfiguredFeatures;
 import com.tjk.electriccraft.world.feature.ModPlacedFeatures;
@@ -59,6 +61,7 @@ public class ElectricCraftMod {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             MenuScreens.register(ModMenuTypes.COAL_GENERATOR_MENU.get(), CoalGeneratorScreen::new);
+            MenuScreens.register(ModMenuTypes.CULINARY_GENERATOR_MENU.get(), CulinaryGeneratorScreen::new);
         }
     }
 }

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "front": "electriccraft:block/electric_press_front",
-    "side": "electriccraft:block/electric_side",
-    "top": "minecraft:block/bricks",
-    "bottom": "minecraft:block/iron_block"}
-}

@@ -16,6 +16,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("coal_generator", () ->
                     BlockEntityType.Builder.of(CoalGeneratorBlockEntity::new,
                             ModBlock.COAL_GENERATOR.get()).build(null));
+    public static final RegistryObject<BlockEntityType> CULINARY_GENERATOR =
+            BLOCK_ENTITIES.register("culinary_generator", () ->
+                    BlockEntityType.Builder.of(CulinaryGeneratorBlockEntity::new,
+                            ModBlock.CULINARY_GENERATOR.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

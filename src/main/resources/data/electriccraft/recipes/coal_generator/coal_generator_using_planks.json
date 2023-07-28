@@ -1,0 +1,7 @@
+{
+  "type": "electriccraft:coal_generator",
+  "ingredient": {
+    "tag": "minecraft:planks"
+  },
+  "output": 40
+}

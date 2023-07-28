@@ -1,7 +1,7 @@
 package com.tjk.electriccraft.screen;
 
 import com.tjk.electriccraft.block.ModBlock;
-import com.tjk.electriccraft.block.entity.CoalGeneratorBlockEntity;
+import com.tjk.electriccraft.block.entity.CulinaryGeneratorBlockEntity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -13,42 +13,42 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.Nullable;
 
-public class CoalGeneratorMenu extends AbstractContainerMenu {
-    public final CoalGeneratorBlockEntity blockEntity;
+
+public class CulinaryGeneratorMenu extends AbstractContainerMenu {
+    public final CulinaryGeneratorBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
-
-    public CoalGeneratorMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
+    public CulinaryGeneratorMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
         this(id, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public CoalGeneratorMenu(int id, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.COAL_GENERATOR_MENU.get(), id);
-        checkContainerSize(inv, 1);
-        blockEntity = (CoalGeneratorBlockEntity) entity;
-        this.level = inv.player.level;
+    public CulinaryGeneratorMenu(int id, Inventory inventory, BlockEntity entity, ContainerData data) {
+        super(ModMenuTypes.CULINARY_GENERATOR_MENU.get(), id);
+        checkContainerSize(inventory, 1);
+        blockEntity = (CulinaryGeneratorBlockEntity) entity;
+        this.level = inventory.player.level;
         this.data = data;
 
-        addPlayerInventory(inv);
-        addPlayerHotbar(inv);
-
+        addPlayerInventory(inventory);
+        addPlayerHotbar(inventory);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 80, 25));
+            this.addSlot(new SlotItemHandler(handler, 0, 80, 21));
         });
 
         addDataSlots(data);
     }
 
-    public boolean isCoalGenerator() { return data.get(0) > 0; }
+    public boolean isCulinaryGenerator() { return data.get(0) > 0; }
 
     public int getScaleProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
         int progressFlameSize = 14;
 
-        return maxProgress != 0 && progress != 0 ? progress *  progressFlameSize / maxProgress : 0;
+        return maxProgress != 0 && progress != 0 ? progress * progressFlameSize / maxProgress : 0;
     }
+
 
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
@@ -91,23 +91,21 @@ public class CoalGeneratorMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                player, ModBlock.COAL_GENERATOR.get());
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, ModBlock.CULINARY_GENERATOR.get());
     }
-
     private void addPlayerInventory(Inventory playerInventor) {
         for(int i = 0; i < 3; ++i) {
             for(int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventor, l + i * 9 + 9, 8 + l * 18, 83 + i * 18));
+                this.addSlot(new Slot(playerInventor, l + i * 9 + 9, 8 + l * 18, 77 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for(int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 141));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 135));
         }
     }
 
-    public CoalGeneratorBlockEntity getBlockEntity() { return blockEntity; }
+    public CulinaryGeneratorBlockEntity getBlockEntity() { return blockEntity; }
 }
