@@ -1,8 +1,8 @@
 {
   "type": "electriccraft:coal_generator",
   "ingredient": {
-    "tag": "minecraft:coals"
+    "item": "minecraft:blaze_rod"
   },
-  "burnTime": 1600,
+  "burnTime": 2400,
   "output": 40
 }

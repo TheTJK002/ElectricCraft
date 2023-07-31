@@ -1,7 +1,7 @@
 {
   "type": "electriccraft:coal_generator",
   "ingredient": {
-    "tag": "minecraft:planks"
+    "tag": "minecraft:wooden_fences"
   },
   "burnTime": 300,
   "output": 10

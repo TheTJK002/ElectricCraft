@@ -1,8 +1,8 @@
 {
   "type": "electriccraft:coal_generator",
   "ingredient": {
-    "tag": "minecraft:planks"
+    "tag": "minecraft:saplings"
   },
-  "burnTime": 300,
+  "burnTime": 100,
   "output": 10
 }

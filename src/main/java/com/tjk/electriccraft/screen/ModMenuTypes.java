@@ -14,10 +14,10 @@ public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, ElectricCraftMod.MODID);
 
-    public static final RegistryObject<MenuType<CoalGeneratorMenu>> COAL_GENERATOR_MENU =
-            registerMenuType(CoalGeneratorMenu::new, "coal_generator_menu");
-    public static final RegistryObject<MenuType<CulinaryGeneratorMenu>> CULINARY_GENERATOR_MENU =
-            registerMenuType(CulinaryGeneratorMenu::new, "culinary_generator_menu");
+    public static final RegistryObject<MenuType<CoalGeneratorMenu>> COAL_GENERATOR_MENU = registerMenuType(CoalGeneratorMenu::new, "coal_generator_menu");
+    public static final RegistryObject<MenuType<CulinaryGeneratorMenu>> CULINARY_GENERATOR_MENU = registerMenuType(CulinaryGeneratorMenu::new, "culinary_generator_menu");
+    public static final RegistryObject<MenuType<BlockPlacerMenu>> BLOCK_PLACER_MENU = registerMenuType(BlockPlacerMenu::new, "block_placer_menu");
+    public static final RegistryObject<MenuType<BlockBreakerMenu>> BLOCK_BREAKER_MENU = registerMenuType(BlockBreakerMenu::new, "block_breaker_menu");
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));

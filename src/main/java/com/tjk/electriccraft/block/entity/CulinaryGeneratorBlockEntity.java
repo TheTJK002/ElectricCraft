@@ -1,5 +1,6 @@
 package com.tjk.electriccraft.block.entity;
 
+import com.google.gson.JsonObject;
 import com.tjk.electriccraft.network.ECNetworkMessages;
 import com.tjk.electriccraft.network.EnergySync;
 import com.tjk.electriccraft.screen.CulinaryGeneratorMenu;

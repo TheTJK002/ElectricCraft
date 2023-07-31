@@ -1,8 +1,8 @@
 {
   "type": "electriccraft:coal_generator",
   "ingredient": {
-    "tag": "minecraft:coals"
+    "tag": "forge:storage_blocks/coal"
   },
-  "burnTime": 1600,
+  "burnTime": 16000,
   "output": 40
 }

@@ -22,6 +22,9 @@
   "item.electriccraft.steel_ingot" : "Steel Ingot",
   "block.electriccraft.steel_block" : "Block of Steel",
 
+  "block.electriccraft.block_placer" : "Block Placer",
+  "block.electriccraft.block_breaker" : "Block Breaker",
+
   "block.electriccraft.coal_generator": "Coal Generator",
   "block.electriccraft.lava_generator": "Lava Generator",
   "block.electriccraft.culinary_generator": "Culinary Generator",

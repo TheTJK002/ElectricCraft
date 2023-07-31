@@ -6,10 +6,7 @@ import com.tjk.electriccraft.block.entity.ModBlockEntities;
 import com.tjk.electriccraft.item.ModItems;
 import com.tjk.electriccraft.network.ECNetworkMessages;
 import com.tjk.electriccraft.recipe.ModRecipes;
-import com.tjk.electriccraft.screen.CoalGeneratorScreen;
-import com.tjk.electriccraft.screen.CulinaryGeneratorMenu;
-import com.tjk.electriccraft.screen.CulinaryGeneratorScreen;
-import com.tjk.electriccraft.screen.ModMenuTypes;
+import com.tjk.electriccraft.screen.*;
 import com.tjk.electriccraft.world.feature.ModConfiguredFeatures;
 import com.tjk.electriccraft.world.feature.ModPlacedFeatures;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -62,6 +59,8 @@ public class ElectricCraftMod {
         public static void onClientSetup(FMLClientSetupEvent event) {
             MenuScreens.register(ModMenuTypes.COAL_GENERATOR_MENU.get(), CoalGeneratorScreen::new);
             MenuScreens.register(ModMenuTypes.CULINARY_GENERATOR_MENU.get(), CulinaryGeneratorScreen::new);
+            MenuScreens.register(ModMenuTypes.BLOCK_PLACER_MENU.get(), BlockPlacerScreen::new);
+            MenuScreens.register(ModMenuTypes.BLOCK_BREAKER_MENU.get(), BlockBreakerScreen::new);
         }
     }
 }

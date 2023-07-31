@@ -1,8 +1,8 @@
 {
   "type": "electriccraft:coal_generator",
   "ingredient": {
-    "tag": "minecraft:planks"
+    "item": "minecraft:dead_bush"
   },
-  "burnTime": 300,
+  "burnTime": 100,
   "output": 10
 }

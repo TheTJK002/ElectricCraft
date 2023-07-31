@@ -60,8 +60,8 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
     private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
+    public CoalGeneratorRecipe currentRecipe;
     private int progress = 0;
-    private int maxProgress = 100;
 
     public CoalGeneratorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.COAL_GENERATOR.get(), pos, state);
@@ -70,7 +70,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
             public int get(int index) {
                 return switch (index) {
                     case 0 -> CoalGeneratorBlockEntity.this.progress;
-                    case 1 -> CoalGeneratorBlockEntity.this.maxProgress;
+                    case 1 -> currentRecipe == null ? 0 : CoalGeneratorBlockEntity.this.currentRecipe.burnTime;
                     default -> 0;
                 };
             }
@@ -79,7 +79,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
             public void set(int index, int value) {
                 switch (index) {
                     case 0 -> CoalGeneratorBlockEntity.this.progress = value;
-                    case 1 -> CoalGeneratorBlockEntity.this.maxProgress = value;
+                    case 1 -> CoalGeneratorBlockEntity.this.currentRecipe.burnTime = value;
                 }
             }
 
@@ -94,35 +94,37 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
         if (level.isClientSide()) {
             return;
         }
+
+        entity.updateRecipe();
         if (!entity.isEnergyFull(entity)) {
-            if (hasInput(entity)) {
+            if (entity.currentRecipe != null) {
                 entity.progress++;
-                if (entity.progress <= entity.maxProgress) {
-                    createEnergy(entity);
-                    if (entity.progress >= entity.maxProgress) {
+                if (entity.progress <= entity.currentRecipe.burnTime) {
+                    entity.energyHandler.receiveEnergy(entity.currentRecipe.output, false);
+                    if (entity.progress >= entity.currentRecipe.burnTime) {
                         removeFuel(entity);
+                        entity.resetProgress();
                     }
-                } else {
-                    entity.resetProgress();
                 }
+            }else {
+                entity.resetProgress();
             }
         }
         setChanged(level, pos, state);
     }
 
     private static void removeFuel(CoalGeneratorBlockEntity entity) {
-        entity.itemHandler.extractItem(0, 1, false);
-        entity.resetProgress();
+        ItemStack stack = entity.itemHandler.getStackInSlot(0);
+        if(!stack.getCraftingRemainingItem().isEmpty()) {
+            entity.itemHandler.setStackInSlot(0, stack.getCraftingRemainingItem().copy());
+        } else entity.itemHandler.extractItem(0, 1, false);
     }
 
-    private static boolean hasInput(CoalGeneratorBlockEntity entity) {
-        List<CoalGeneratorRecipe> recipes = entity.getLevel().getRecipeManager().getAllRecipesFor(CoalGeneratorRecipe.Type.INSTANCE);
-        ItemStack inputStack = entity.itemHandler.getStackInSlot(0);
-        return recipes.stream().anyMatch(recipe -> recipe.input.test(inputStack));
-    }
-
-    private static void createEnergy(CoalGeneratorBlockEntity entity) {
-        entity.energyHandler.receiveEnergy( 40, false);
+    private void updateRecipe() {
+        List<CoalGeneratorRecipe> recipes = getLevel().getRecipeManager().getAllRecipesFor(CoalGeneratorRecipe.Type.INSTANCE);
+        ItemStack inputStack = itemHandler.getStackInSlot(0);
+        Optional<CoalGeneratorRecipe> optionalRecipe = recipes.stream().filter(recipe -> recipe.input.test(inputStack)).findAny();
+        currentRecipe = optionalRecipe.orElse(null);
     }
 
     public boolean isEnergyFull(CoalGeneratorBlockEntity entity) {

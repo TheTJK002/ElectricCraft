@@ -15,11 +15,13 @@ public class CoalGeneratorRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     public final int output;
     public final Ingredient input;
+    public int burnTime;
 
-    public CoalGeneratorRecipe(ResourceLocation id, int output, Ingredient input) {
+    public CoalGeneratorRecipe(ResourceLocation id, int output, Ingredient input, int burnTime) {
         this.id = id;
         this.output = output;
         this.input = input;
+        this.burnTime = burnTime;
     }
 
     @Override
@@ -75,19 +77,22 @@ public class CoalGeneratorRecipe implements Recipe<SimpleContainer> {
         public CoalGeneratorRecipe fromJson(ResourceLocation id, JsonObject json) {
             Ingredient input = Ingredient.fromJson(json.getAsJsonObject("ingredient"));
             int output = json.get("output").getAsInt();
-            return new CoalGeneratorRecipe(id, output, input);
+            int burnTime = json.get("burnTime").getAsInt();
+            return new CoalGeneratorRecipe(id, output, input, burnTime);
         }
 
         @Override
         public @Nullable CoalGeneratorRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             int output = buf.readInt();
+            int burnTime = buf.readInt();
             Ingredient input = Ingredient.fromNetwork(buf);
-            return new CoalGeneratorRecipe(id, output, input);
+            return new CoalGeneratorRecipe(id, output, input, burnTime);
         }
 
         @Override
         public void toNetwork(FriendlyByteBuf buf, CoalGeneratorRecipe recipe) {
             buf.writeInt(recipe.output);
+            buf.writeInt(recipe.burnTime);
             recipe.input.toNetwork(buf);
         }
     }

@@ -1,8 +1,8 @@
 {
   "type": "electriccraft:coal_generator",
   "ingredient": {
-    "tag": "minecraft:coals"
+    "item": "minecraft:lava_bucket"
   },
-  "burnTime": 1600,
+  "burnTime": 20000,
   "output": 40
 }

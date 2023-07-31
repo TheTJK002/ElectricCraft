@@ -1,0 +1,8 @@
+{
+  "type": "electriccraft:coal_generator",
+  "ingredient": {
+    "tag": "minecraft:wooden_slabs"
+  },
+  "burnTime": 150,
+  "output": 5
+}
